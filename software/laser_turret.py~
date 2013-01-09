@@ -1,0 +1,29 @@
+import serial
+import time
+from math import sin, cos, pi
+
+class LaserTurret(serial.Serial):
+    def clear(self):
+        self.write('c')
+        
+Lazor = serial.Serial('/dev/tty.usbserial-A9007KVJ', baudrate=115200, timeout = 1)
+Lazor.open()
+
+p = 0
+t = 0
+i = 1
+Lazor.write("c")
+while 1:
+    p = 5*(2*cos(4*pi*i/40) - cos(8*pi*i/40))
+#    t = 5*cos(4*pi*i/80)
+    t = 5*(2*sin(4*pi*i/40)-sin(8*pi*i/40))                 
+
+    Lazor.write("p%i\nt%i\n" % (p,t))
+    print "p%i\nt%i\n" % (p,t)
+    if i == 1000:
+        i = 0
+    else:
+        i += 1
+
+    time.sleep(.025)
+

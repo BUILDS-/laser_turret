@@ -19,7 +19,7 @@ void setup()
   noInterrupts();
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
-  Serial.begin(9600);
+  Serial.begin(115200);
 //  Serial.println("Hello Computer");
   Serial.read();
 //  TCNT0 = 0;
@@ -31,7 +31,7 @@ void setup()
   
   interrupts();
   panServo.attach(9);  // attaches the servo on pin 9 to the servo object 
-  tiltServo.attach(10);
+  tiltServo.attach(12);
 //  delay(500);
 } 
 
@@ -90,6 +90,7 @@ void loop()
                 } else if ((inBuf[buf_loc+ang_i+1] >='0') && (inBuf[buf_loc+ang_i+1] <='9')) {
                   angle[ang_i] = inBuf[buf_loc+1+ang_i];
                 } else {
+                  angle[ang_i] = '\0';
                   break;
                 }
               }
@@ -122,7 +123,7 @@ void loop()
   }
 //  p = 10*sin(2*M_PI*i/40);
 //  t = 10*(2*M_PI*i/20);
-  panServo.write(90+p);
+  panServo.write(90-p);
   tiltServo.write(90+t);
 //  delay(10);
 //  i = (i++) % 200;
