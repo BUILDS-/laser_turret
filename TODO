@@ -1,0 +1,9 @@
+* Do math to convert from (x, y) to the pan, tilt coordinates that get sent to
+  the turret - Chris W
+** Implement in LaserTurret class (send_coordinates(self, x, y))
+
+* Find faster servos, or move to steppers? - Chris W.
+
+* Better more permanent setup - Chris W.
+
+* Attach webcam for cool tracking hacks? - Dan G
